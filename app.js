@@ -652,12 +652,18 @@ function renderMatrix() {
   byId("matrix").innerHTML = `
     <span class="axis y">Higher impact</span>
     <span class="axis x">Higher effort</span>
+    <span class="quadrant q1">Quick wins</span>
+    <span class="quadrant q2">Strategic bets</span>
+    <span class="quadrant q3">Monitor</span>
+    <span class="quadrant q4">Sequence later</span>
     ${roadmap.map((item) => {
       const themeSignals = signals.filter((signal) => signal.theme === item.theme);
       const avgImpact = themeSignals.reduce((sum, signal) => sum + signal.impact, 0) / themeSignals.length;
       const avgEffort = themeSignals.reduce((sum, signal) => sum + signal.effort, 0) / themeSignals.length;
       const color = item.priority === "P0" ? "var(--p0)" : item.priority === "P1" ? "var(--p1)" : "var(--p2)";
-      return `<span class="bubble" title="${item.title}: impact ${avgImpact.toFixed(1)}, effort ${avgEffort.toFixed(1)}" style="left:${avgEffort * 10}%; bottom:${avgImpact * 10}%; background:${color};">${item.priority}</span>`;
+      const left = Math.min(92, Math.max(8, avgEffort * 10));
+      const bottom = Math.min(92, Math.max(8, avgImpact * 10));
+      return `<span class="bubble" title="${item.title}: impact ${avgImpact.toFixed(1)}, effort ${avgEffort.toFixed(1)}" style="left:${left}%; bottom:${bottom}%; background:${color};"><strong>${item.priority}</strong><em>${item.title}</em></span>`;
     }).join("")}
   `;
 }
@@ -716,6 +722,7 @@ function renderAll() {
   renderReadiness();
   renderRoadmap(items);
   renderFeatureRequests(items);
+  renderMatrix();
   renderQuotes(items);
   renderThemeCards(items);
   renderTable(items);

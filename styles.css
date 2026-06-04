@@ -500,21 +500,73 @@ select:focus {
   bottom: 10px;
 }
 
+.quadrant {
+  position: absolute;
+  color: rgba(100, 112, 125, 0.52);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.quadrant.q1 {
+  top: 42px;
+  left: 18px;
+}
+
+.quadrant.q2 {
+  top: 42px;
+  right: 18px;
+}
+
+.quadrant.q3 {
+  bottom: 42px;
+  left: 18px;
+}
+
+.quadrant.q4 {
+  right: 18px;
+  bottom: 42px;
+}
+
 .bubble {
   position: absolute;
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 148px;
+  min-height: 34px;
+  padding: 6px 9px 6px 7px;
   color: #fff;
   background: var(--accent);
   border: 2px solid #fff;
-  border-radius: 50%;
+  border-radius: 999px;
   box-shadow: 0 8px 18px rgba(23, 32, 42, 0.16);
-  font-size: 0.72rem;
-  font-weight: 820;
   cursor: help;
   transform: translate(-50%, 50%);
+  z-index: 2;
+}
+
+.bubble strong {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+  font-size: 0.68rem;
+  font-weight: 840;
+}
+
+.bubble em {
+  overflow: hidden;
+  font-size: 0.7rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .quotes,
