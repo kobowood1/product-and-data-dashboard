@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Avatar Alpha Testing Insights Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="topbar" aria-label="Dashboard navigation">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">A</span>
+          <span>AI Avatar Alpha Insights</span>
+        </div>
+        <div class="top-actions">
+          <button class="icon-button" id="copyLink" aria-label="Copy share link" title="Copy share link">
+            <span aria-hidden="true">L</span>
+          </button>
+          <button class="icon-button" id="printDashboard" aria-label="Print dashboard" title="Print dashboard">
+            <span aria-hidden="true">P</span>
+          </button>
+        </div>
+      </nav>
+
+      <section class="hero-grid">
+        <div>
+          <p class="eyebrow">Alpha tester feedback | Anam direct access</p>
+          <h1>Alpha insights from early AI avatar pilots</h1>
+          <p class="hero-copy">
+            A synthesized readout across tester responses, organized into adoption signals,
+            readiness risks, and priority opportunities for avatar-based teaching, training, and simulation.
+          </p>
+        </div>
+        <div class="hero-panel" aria-label="Executive summary">
+          <div class="summary-score">
+            <span class="score" id="readinessScore">72</span>
+            <span class="score-label">readiness index</span>
+          </div>
+          <p id="summaryLine">
+            Strong realism and conversational promise, with priority work needed around scenario setup,
+            learner scaffolding, evaluation artifacts, and trusted knowledge grounding.
+          </p>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <section class="filters" aria-label="Dashboard filters">
+        <label>
+          Search feedback
+          <input id="searchInput" type="search" placeholder="Search tester, quote, theme, request..." />
+        </label>
+        <label>
+          Theme
+          <select id="themeFilter">
+            <option value="all">All themes</option>
+          </select>
+        </label>
+        <label>
+          Segment
+          <select id="segmentFilter">
+            <option value="all">All segments</option>
+          </select>
+        </label>
+        <label>
+          Signal type
+          <select id="signalFilter">
+            <option value="all">All signals</option>
+            <option value="Positive">Positive</option>
+            <option value="Risk">Risk</option>
+            <option value="Feature Request">Feature Request</option>
+            <option value="Question">Question</option>
+            <option value="Insight">Insight</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="kpi-grid" aria-label="Key metrics">
+        <article>
+          <span class="metric" id="testerCount">0</span>
+          <span class="label">testers</span>
+        </article>
+        <article>
+          <span class="metric" id="signalCount">0</span>
+          <span class="label">coded insights</span>
+        </article>
+        <article>
+          <span class="metric" id="featureCount">0</span>
+          <span class="label">feature requests</span>
+        </article>
+        <article>
+          <span class="metric" id="priorityCount">0</span>
+          <span class="label">P0/P1 opportunities</span>
+        </article>
+      </section>
+
+      <section class="dashboard-grid overview-grid">
+        <article class="panel wide">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Theme volume</p>
+              <h2>What testers talked about most</h2>
+            </div>
+          </div>
+          <div id="themeChart" class="chart" role="img" aria-label="Theme volume chart"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Signal mix</p>
+              <h2>Sentiment and request balance</h2>
+            </div>
+          </div>
+          <div id="signalChart" class="donut-wrap" role="img" aria-label="Signal type donut chart"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Readiness</p>
+              <h2>Readiness interpretation</h2>
+            </div>
+          </div>
+          <div class="readiness-list" id="readinessList"></div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Prioritized roadmap</p>
+            <h2>Recommended build sequence</h2>
+          </div>
+          <div class="legend">
+            <span><i class="dot p0"></i>P0</span>
+            <span><i class="dot p1"></i>P1</span>
+            <span><i class="dot p2"></i>P2</span>
+          </div>
+        </div>
+        <div id="roadmap" class="roadmap"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Feature requests</p>
+            <h2>Requested capabilities from testers</h2>
+          </div>
+          <span id="requestCount" class="result-count">0 requests</span>
+        </div>
+        <div id="featureRequests" class="feature-requests"></div>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Opportunity map</p>
+              <h2>Impact vs. effort</h2>
+            </div>
+          </div>
+          <div id="matrix" class="matrix" role="img" aria-label="Impact effort matrix"></div>
+        </article>
+
+        <article class="panel wide">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Tester voice</p>
+              <h2>Evidence excerpts</h2>
+            </div>
+          </div>
+          <div id="quotes" class="quotes"></div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Theme cards</p>
+            <h2>Themes, evidence, and requests</h2>
+          </div>
+        </div>
+        <div id="themeCards" class="theme-cards"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Feedback table</p>
+            <h2>Normalized signal log</h2>
+          </div>
+          <span id="resultCount" class="result-count">0 results</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Tester</th>
+                <th>Segment</th>
+                <th>Theme</th>
+                <th>Signal</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody id="signalTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Source: six Alpha Test Feedback Form workbooks in this project folder. Last synthesized June 4, 2026.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
