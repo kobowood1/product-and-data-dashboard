@@ -38,4 +38,10 @@ GitHub repository:
 https://github.com/kobowood1/product-and-data-dashboard
 ```
 
-For GitHub Pages, publish from the `main` branch and root folder.
+GitHub Pages site:
+
+```text
+https://kobowood1.github.io/product-and-data-dashboard/
+```
+
+This repo includes a GitHub Actions workflow that deploys the root folder to GitHub Pages whenever changes are pushed to `main`.
