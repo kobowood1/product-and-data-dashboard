@@ -1,6 +1,6 @@
 # AI Avatar Alpha Testing Insights Dashboard
 
-This static dashboard synthesizes the seven AI Avatar alpha testing feedback workbooks in the parent folder into executive-ready insights, coded signals, feature requests, priority recommendations, charts, evidence quotes, and a normalized signal log.
+This static dashboard synthesizes the eight AI Avatar alpha testing feedback workbooks in the parent folder into executive-ready insights, coded signals, feature requests, priority recommendations, charts, evidence quotes, and a normalized signal log.
 
 ## Run Locally
 

@@ -5,7 +5,8 @@ const testers = [
   { name: "Celia Coochwytewa", date: "2026-05-29", segment: "Nursing operations", department: "Edson College of Nursing and Health Innovation", role: "Assistant Director, Academic Operations" },
   { name: "Matt Keating", date: "2026-05-26", segment: "Instructional design", department: "Edson College", role: "Instructional Designer" },
   { name: "Michael Weiland", date: "2026-05-20", segment: "Academic leadership", department: "WPC", role: "Director" },
-  { name: "OTENG NTSWENG", date: "2026-06-04", segment: "Information systems", department: "Information Systems", role: "Clinical Assistant Professor" }
+  { name: "OTENG NTSWENG", date: "2026-06-04", segment: "Information systems", department: "Information Systems", role: "Clinical Assistant Professor" },
+  { name: "Dan Mazzola", date: "2026-06-04", segment: "Information systems", department: "Information Systems/WPC", role: "Clinical Professor/Assistant Chair/Faculty Director for AI in Business and MS ISM" }
 ];
 
 const signals = [
@@ -338,6 +339,61 @@ const signals = [
     effort: 5,
     evidence: "Recommended grounding prompts and experiences in the science of learning and instruction rather than treating the tool as a panacea.",
     insight: "Pilot design should be anchored in learning theory and measurable learning outcomes."
+  },
+  {
+    tester: "Dan Mazzola",
+    segment: "Information systems",
+    theme: "Voice, Timing, and Pacing",
+    type: "Risk",
+    priority: "P1",
+    impact: 7,
+    effort: 4,
+    evidence: "Reported bad lip sync during the interaction.",
+    insight: "Lip sync quality is a visible immersion and credibility issue."
+  },
+  {
+    tester: "Dan Mazzola",
+    segment: "Information systems",
+    theme: "Camera and Privacy Clarity",
+    type: "Risk",
+    priority: "P1",
+    impact: 8,
+    effort: 3,
+    evidence: "Was not sure what the camera was for or whether it was looking at the user.",
+    insight: "Camera ambiguity can create trust and privacy concerns before learning starts."
+  },
+  {
+    tester: "Dan Mazzola",
+    segment: "Information systems",
+    theme: "Learning Design Alignment",
+    type: "Risk",
+    priority: "P1",
+    impact: 8,
+    effort: 3,
+    evidence: "The avatar used the SMART framework without defining the acronym, describing it, or explaining why it was important.",
+    insight: "Instructional frameworks need a clear setup before the avatar asks learners to use them."
+  },
+  {
+    tester: "Dan Mazzola",
+    segment: "Information systems",
+    theme: "Flow Clarity and Completion",
+    type: "Feature Request",
+    priority: "P1",
+    impact: 8,
+    effort: 3,
+    evidence: "Requested a setup, framework, and backstory for the engagement.",
+    insight: "Scenario pre-briefing is needed before beginning the interaction."
+  },
+  {
+    tester: "Dan Mazzola",
+    segment: "Information systems",
+    theme: "Flow Clarity and Completion",
+    type: "Risk",
+    priority: "P1",
+    impact: 8,
+    effort: 3,
+    evidence: "The session started immediately with structure, no hello, no purpose, and no setup about honors projects, which felt startling.",
+    insight: "Start-of-session orientation needs to establish purpose, context, and expected learner role."
   }
 ];
 
@@ -411,6 +467,11 @@ const themes = [
     name: "Learning Design Alignment",
     summary: "The strongest pilots will be grounded in how people learn, not only in the novelty of the avatar interaction.",
     action: "Anchor scenario prompts, rubrics, and duration tests in learning science and instructional goals."
+  },
+  {
+    name: "Camera and Privacy Clarity",
+    summary: "Users need to know what camera access does, whether they are being observed, and how visual input affects the session.",
+    action: "Add a plain-language camera purpose disclosure and visible camera state before sessions begin."
   }
 ];
 
@@ -426,8 +487,8 @@ const roadmap = [
     title: "Session guidance and completion",
     priority: "P0",
     theme: "Flow Clarity and Completion",
-    description: "Pre-brief the learner, show session state, explain feedback flow, and make ending the call unambiguous.",
-    evidence: "Multiple testers did not know how to trigger feedback or know when the activity was finished."
+    description: "Pre-brief the learner, show session state, explain feedback flow, establish purpose, and make ending the call unambiguous.",
+    evidence: "Multiple testers did not know how to trigger feedback, why the activity started, or when the activity was finished."
   },
   {
     title: "Learner modes and scaffolding",
@@ -491,14 +552,28 @@ const roadmap = [
     theme: "Technical Content Handling",
     description: "Test and improve how avatars read, interpret, and speak formulas, symbols, and discipline-specific notation.",
     evidence: "Statistics notation was flagged as a necessary expansion area."
+  },
+  {
+    title: "Camera purpose disclosure",
+    priority: "P1",
+    theme: "Camera and Privacy Clarity",
+    description: "Explain whether camera access is used, what it observes, and how it affects the session before learners begin.",
+    evidence: "A tester was unsure what the camera was for or whether it was watching them."
+  },
+  {
+    title: "Pre-brief and framework setup",
+    priority: "P1",
+    theme: "Learning Design Alignment",
+    description: "Introduce purpose, backstory, learner role, and any frameworks or acronyms before the avatar starts the task.",
+    evidence: "A tester found the immediate start with SMART and structure startling and underexplained."
   }
 ];
 
 const readiness = [
-  { label: "Conversational realism", value: 86, note: "Repeatedly praised across finance, health, nursing, instructional design, and information systems testers." },
-  { label: "Instructional workflow", value: 58, note: "Needs clearer cases, session flow, and assignment framing." },
+  { label: "Conversational realism", value: 82, note: "Emotional realism is strong, but lip sync, voice-persona fit, and pacing remain visible quality risks." },
+  { label: "Instructional workflow", value: 54, note: "Needs clearer pre-briefing, scenario context, framework explanation, and session flow." },
   { label: "Assessment artifacts", value: 56, note: "High demand for transcripts, printable evaluation, outcome tracking, and timestamp analytics." },
-  { label: "Trust and safety", value: 49, note: "Guardrails exist in pockets, but knowledge accuracy and misuse controls need launch criteria." }
+  { label: "Trust and safety", value: 50, note: "Guardrails exist in pockets, but knowledge accuracy, camera clarity, and misuse controls need launch criteria." }
 ];
 
 const colors = ["#1f6f8b", "#9b5d2e", "#4a6f44", "#8f3f56", "#6b5b95", "#2d768f", "#7c6a36", "#6a6f7a", "#b4573f", "#427d75"];
@@ -622,7 +697,8 @@ function requestTitle(item) {
     "Asked if outcomes or themes can be tracked so students know when the activity is finished.": "Outcome and completion tracking",
     "Requested timing or timestamp features to interpret pauses, silence, disengagement, uncertainty, or possible outside-tool use.": "Timestamp and pause analytics",
     "Requested captions so students can engage with both auditory and visual cues.": "Captions for multimodal learning",
-    "Requested testing for statistics use cases involving symbols, formulas, and technical notation such as pi, mu, and alpha.": "Technical notation support"
+    "Requested testing for statistics use cases involving symbols, formulas, and technical notation such as pi, mu, and alpha.": "Technical notation support",
+    "Requested a setup, framework, and backstory for the engagement.": "Scenario pre-brief and backstory"
   };
   return titles[item.evidence] || item.theme;
 }
